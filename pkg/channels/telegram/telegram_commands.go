@@ -193,7 +193,7 @@ func (c *cmd) Model(ctx context.Context, message telego.Message) error {
 			if c.switcher != nil {
 				currentModel = c.switcher.GetDefaultAgentModel()
 			}
-			var lines []string
+			lines := make([]string, 0, len(c.config.ModelList))
 			for _, m := range c.config.ModelList {
 				_, modelID := providers.ExtractProtocol(m.Model)
 				line := "• " + m.ModelName
